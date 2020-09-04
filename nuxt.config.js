@@ -1,4 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
+/* nuxt.config.js */
+// `DEPLOY_ENV` が `GH_PAGES` の場合のみ `router.base = '/<repository-name>/'` を追加する
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+  ? {
+      router: {
+        base: '/google-picker/'
+      }
+    }
+  : {}
 
 export default {
   /*
@@ -82,5 +92,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+  },
+
+  ...routerBase
 }
